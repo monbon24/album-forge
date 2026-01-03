@@ -1,17 +1,36 @@
-import './App.css'
+import { useAppState } from './store';
+import './App.css';
+
+// Import components
+import { Sidebar } from './components/Sidebar';
+import { StoryPhase } from './components/StoryPhase';
+import { TrackPhase } from './components/TrackPhase';
+import { PersonaPhase } from './components/PersonaPhase';
+import { WritingPhase } from './components/WritingPhase';
+import { RefinementPhase } from './components/RefinementPhase';
 
 function App() {
+    const { currentPhase, setPhase } = useAppState();
+
+    const renderPhase = () => {
+        switch (currentPhase) {
+            case 'story': return <StoryPhase />;
+            case 'tracks': return <TrackPhase />;
+            case 'persona': return <PersonaPhase />;
+            case 'writing': return <WritingPhase />;
+            case 'refinement': return <RefinementPhase />;
+            default: return <StoryPhase />;
+        }
+    };
+
     return (
-        <div className="app-layout">
-            <nav style={{ padding: '1rem', borderRight: '1px solid #ccc' }}>
-                <h1>Album Forge</h1>
-            </nav>
-            <main style={{ padding: '1rem' }}>
-                <p>Application reconstructed from Drive assets.</p>
-                <p><em>Note: Node.js installation is required to run this development server.</em></p>
+        <div className="app-container">
+            <Sidebar currentPhase={currentPhase} onPhaseChange={setPhase} />
+            <main className="main-content">
+                {renderPhase()}
             </main>
         </div>
-    )
+    );
 }
 
-export default App
+export default App;
