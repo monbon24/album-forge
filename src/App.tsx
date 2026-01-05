@@ -1,25 +1,32 @@
 import { useAppState } from './store';
 import './App.css';
 
-// Import components
 import { Sidebar } from './components/Sidebar';
-import { StoryPhase } from './components/StoryPhase';
-import { TrackPhase } from './components/TrackPhase';
+import { CorePhase } from './components/CorePhase';
 import { PersonaPhase } from './components/PersonaPhase';
-import { WritingPhase } from './components/WritingPhase';
-import { RefinementPhase } from './components/RefinementPhase';
+import { SonicPhase } from './components/SonicPhase';
+import { ArcPhase } from './components/ArcPhase';
+import { SongsPhase } from './components/SongsPhase';
+import { ConstraintsPhase } from './components/ConstraintsPhase';
+import { CohesionPhase } from './components/CohesionPhase';
+import { TagsPhase } from './components/TagsPhase';
+import { MantraPhase } from './components/MantraPhase';
 
 function App() {
     const { currentPhase, setPhase } = useAppState();
 
     const renderPhase = () => {
         switch (currentPhase) {
-            case 'story': return <StoryPhase />;
-            case 'tracks': return <TrackPhase />;
+            case 'core': return <CorePhase />;
             case 'persona': return <PersonaPhase />;
-            case 'writing': return <WritingPhase />;
-            case 'refinement': return <RefinementPhase />;
-            default: return <StoryPhase />;
+            case 'sonic': return <SonicPhase />;
+            case 'arc': return <ArcPhase />;
+            case 'songs': return <SongsPhase />;
+            case 'constraints': return <ConstraintsPhase />;
+            case 'cohesion': return <CohesionPhase />;
+            case 'tags': return <TagsPhase />;
+            case 'mantra': return <MantraPhase />;
+            default: return <CorePhase />;
         }
     };
 
